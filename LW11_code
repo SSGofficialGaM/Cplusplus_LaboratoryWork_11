@@ -1,0 +1,128 @@
+#include <iostream>
+using namespace std;
+
+struct Date {
+    int hours, minutes;
+};
+
+int main()
+{
+    //Task 1
+    int minutesToAdd, newMinutes, newHours;
+    Date dTime;
+    
+    cout << "Enter the starter hours value: ";
+    cin >> dTime.hours;
+    
+    if (dTime.hours >= 0 && dTime.hours <= 23) {
+        cout << "Enter the starter minutes value: ";
+        cin >> dTime.minutes;
+        
+        if (dTime.minutes >= 0 && dTime.minutes <= 59) {
+            cout << "Enter the minutes you want to add to the main time: ";
+            cin >> minutesToAdd;
+            
+            if (minutesToAdd >= 0) {
+                newMinutes = dTime.minutes + minutesToAdd;
+                
+                if (newMinutes >= 60) {
+                    newHours = dTime.hours + newMinutes / 60;
+                    newMinutes %= 60;
+                    
+                    if (newHours >= 24) {
+                        newHours %= 24;
+                        if (newMinutes < 10) {
+                            cout << "The new time you got is " << newHours << ":0" << newMinutes;
+                        }
+                        else {
+                            cout << "The new time you got is " << newHours << ":" << newMinutes;
+                        }
+                    }
+                    else {
+                        if (newMinutes < 10) {
+                            cout << "The new time you got is " << newHours << ":0" << newMinutes;
+                        }
+                        else {
+                            cout << "The new time you got is " << newHours << ":" << newMinutes;
+                        }
+                    }
+                }
+                else {
+                    newHours = dTime.hours;
+                    if (newMinutes < 10) {
+                        cout << "The new time you got is " << newHours << ":0" << newMinutes;
+                    }
+                    else {
+                        cout << "The new time you got is " << newHours << ":" << newMinutes;
+                    }
+                }
+            }
+            else {
+                cout << "Error! The entered 'minutes to add' value must be greater than 0 or equal to it.";
+            }
+        }
+        else {
+            cout << "Error! Entered the invalid minutes value.";
+        }
+    }
+    else {
+        cout << "Error! Entered the invalid hours value.";
+    }
+    
+    //Task 2
+    int durHours, durMinutes;
+    Date startTime, endTime;
+    
+    cout << "Enter the start hours value: ";
+    cin >> startTime.hours;
+    
+    if (startTime.hours >= 0 && startTime.hours <= 23) {
+        cout << "Enter the start minutes value: ";
+        cin >> startTime.minutes;
+        
+        if (startTime.minutes >= 0 && startTime.minutes <= 59) {
+            cout << "Enter the end hours value: ";
+            cin >> endTime.hours;
+            
+            if (endTime.hours >= 0 && endTime.hours <= 23) {
+                cout << "Enter the end minutes value: ";
+                cin >> endTime.minutes;
+                
+                if (endTime.minutes >= 0 && endTime.minutes <= 59) {
+                    durHours = endTime.hours - startTime.hours;
+                    durMinutes = endTime.minutes - startTime.minutes;
+                    
+                    if (durHours < 0 && durMinutes < 0) {
+                        durHours += 23;
+                        durMinutes += 60;
+                        cout << "The duration between the entered times is " << durHours << ":" << durMinutes;
+                    }
+                    else if (durHours > 0 && durMinutes < 0) {
+                        durHours -= 1;
+                        durMinutes += 60;
+                        cout << "The duration between the entered times is " << durHours << ":" << durMinutes;
+                    }
+                    else if (durHours < 0 && durMinutes > 0) {
+                        durHours += 24;
+                        cout << "The duration between the entered times is " << durHours << ":" << durMinutes;
+                    }
+                    else {
+                        cout << "The duration between the entered times is " << durHours << ":" << durMinutes;
+                    }
+                }
+                else {
+                    cout << "Error! Entered the invalid end minutes value.";
+                }
+            }
+            else {
+                cout << "Error! Entered the invalid end hours value.";
+            }
+        }
+        else {
+            cout << "Error! Entered the invalid start minutes value.";
+        }
+    }
+    else {
+        cout << "Error! Entered the invalid start hours value.";
+    }
+}
